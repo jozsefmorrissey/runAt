@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src='/res/ItDate.js'></script>
+		<script src='/res/modify.js'></script>
+		<link rel='stylesheet' type='text/css' href='/res/modify.css'\>
+	</head>
+	</body>
+	<div ng-app="myApp" ng-controller="myCtrl" class='center'>
+		<h3 ng-click='editCmds = !editCmds'>Commands</h3>
+		<div ng-show='editCmds'>
+			<div id='cmd-creator' ng-repeat='cmd in cmds'>
+				<label>command: </label>
+				<input ng-style='!cmd.value && cmd.alias && {"border-color": "red"}' ng-model='cmd.value'/>
+				<label>Alias: </label>
+				<input ng-style='cmd.value && !cmd.alias && {"border-color": "red"}' ng-model='cmd.alias'/>
+				<label>Color</label>
+				<select ng-model='cmd.selectedColor'>
+					<option ng-repeat='(color, value) in colors' value="{{value}}">{{color}}</option>			
+				</select>
+				<div class='color-sample' style='background-color: {{cmd.selectedColor}}'></div>
+			</div>
+			<button ng-click='addCmd()'>Add Command</button>
+		</div>
+		<div>		
+			<label>Time Id: </label>
+			<select ng-if='!addNew' ng-change='get(selectedId)' ng-model='selectedId'>
+				<option ng-repeat='id in idList' value{{id}}>{{id}}</option>
+			</select>
+			<input ng-if='addNew' ng-model='newId' ng-keydown='$event.keyCode === 13 && addNewId(newId)'/>
+		</div>
+		<button ng-if='!addNew' ng-click='toggleAddNew()'>+</button>
+		<div class='section-cnt' ng-repeat='section in excludedSections' id='section-{{section.id}}'>
+			<span style='display:inline-flex'>
+				<span ng-repeat='day in days' style='padding:3pt;text-align: center'>
+					<label>{{day}}</label>
+					<br>
+					<input day='{{day}}' ng-checked='section.days.indexOf(day) != -1' type='checkbox'/>
+				</span>
+			</span>
+			<div>
+				<br>
+				<span ng-repeat='space in fiveMinSpace track by $index' index='{{$index}}' id='time-block-{{$index}}' class='time-block'></span>
+				<b class='timestamp' ng-repeat='time in times' id='time-{{time}}'>{{time}}</b>			
+				<b class='timestamp' ng-repeat='time in times' id='time-{{time}}-5'>|</b>			
+				<b class='timestamp' ng-repeat='time in times' id='time-{{time}}-25'>.</b>			
+				<b class='timestamp' ng-repeat='time in times' id='time-{{time}}-75'>.</b>			
+			</div>
+			<div class='cmd-time-cnt' ng-repeat='cmd in cmds' ng-if='cmd.alias && cmd.value'>
+				<label>{{cmd.alias}}</label>
+				<br>
+				<div class='cmd-input-cnt' style='background-color: {{cmd.selectedColor}}'>
+					<input type='time' ng-change='updateVisual()' ng-repeat='time in cmd.times[section.id]' ng-model='cmd.times[section.id][$index]'/>
+				</div>
+				<br>
+				<button ng-click='addCmdTime(cmd, section.id)'>Add {{cmd.alias}} Time</button>
+				<br>
+			</div>
+		</div>
+		<br>
+		<button ng-click='addSection()'>Add Section</button>
+		<br><br>
+
+		<button ng-click='save(selectedId)'>Save Changes</button>
+	</div>
+
+	</body>
+</html>

@@ -1,0 +1,46 @@
+.time-block {
+	background-color: #46c346;
+	min-height: 20px;
+	min-width: 3px;
+	font-size: 10;
+	display: inline-block;
+}
+.time-exclude {
+	background-color: red;
+}
+.time-input {
+	padding: 3px;
+}
+.center {
+	text-align: center;
+}
+.timestamp {
+	position: absolute;
+}
+
+.color-sample {
+    width: 20px;
+    display: inline-block;
+    height: 20px;
+    transform: translate(50%, 25%);
+}
+
+.cmd-time-cnt {
+	background-color: whitesmoke;
+   border-radius: 5pt;
+   padding: 5pt;
+   margin: 5pt;
+   border-style: groove;
+}
+
+.cmd-input-cnt {
+	padding: 5pt;
+}
+
+.section-cnt {
+	background-color: white;
+   border-radius: 5pt;
+   padding: 5pt;
+   margin: 5pt;
+   border-style: groove;
+}
