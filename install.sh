@@ -2,6 +2,7 @@
 HOME=$(./bin/runAt.sh HOME)
 cp ./storage/desktopIcons/* /home/$USER/Desktop/
 sudo cp ./bin/* /bin/
+sudo cp -r ./storage/* $HOME/storage/
 
 sudo mkdir -p $HOME
 sudo cp -r ./* $HOME
