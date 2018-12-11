@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=Deactivate Eric
+Name=Update RunAt
 Comment=My application which does this
-Icon=/programs/runAt/storage/images/deactivate.png
+Icon=/programs/runAt/storage/images/update.png
 Exec=updateRunAt.sh
 Type=Application
 Encoding=UTF-8
