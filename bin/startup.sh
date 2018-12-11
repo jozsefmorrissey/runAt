@@ -1,2 +1,2 @@
 #!/bin/bash
-runAt.sh startup
+runAt.sh startup > /.out.txt

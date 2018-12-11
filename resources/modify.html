@@ -8,21 +8,25 @@
 	</head>
 	</body>
 	<div ng-app="myApp" ng-controller="myCtrl" class='center'>
-		<h3 ng-click='editCmds = !editCmds; delayUpdateVisual();' style='cursor: pointer;'>Commands</h3>
-		<div ng-show='editCmds'>
-			<div id='cmd-creator' ng-repeat='cmd in cmds'>
-				<label>command: </label>
-				<input ng-style='!cmd.value && cmd.alias && {"border-color": "red"}' ng-model='cmd.value'/>
-				<label>Alias: </label>
-				<input ng-style='cmd.value && !cmd.alias && {"border-color": "red"}' ng-model='cmd.alias'/>
-				<label>Color</label>
-				<select ng-model='cmd.selectedColor'>
-					<option ng-repeat='(color, value) in colors' value="{{value}}">{{color}}</option>			
-				</select>
-				<div class='color-sample' style='background-color: {{cmd.selectedColor}}'></div>
+		<div class='cmd-cnt'>
+			<h3 ng-click='editCmds = !editCmds; delayUpdateVisual();' style='cursor: pointer;'>Commands</h3>
+			<div ng-show='editCmds'>
+				<div id='cmd-creator' ng-repeat='cmd in cmds'>
+					<label>command: </label>
+					<input ng-style='!cmd.value && cmd.alias && {"border-color": "red"}' ng-model='cmd.value'/>
+					<label>Alias: </label>
+					<input ng-style='cmd.value && !cmd.alias && {"border-color": "red"}' ng-model='cmd.alias'/>
+					<label>Color</label>
+					<select ng-model='cmd.selectedColor'>
+						<option ng-repeat='(color, value) in colors' value="{{value}}">{{color}}</option>			
+					</select>
+					<div class='color-sample' style='background-color: {{cmd.selectedColor}}'></div>
+				</div>
+				<br>
+				<button ng-click='addCmd()'>Add Command</button>
 			</div>
-			<button ng-click='addCmd()'>Add Command</button>
 		</div>
+		<br>
 		<div>		
 			<label>Time Id: </label>
 			<select ng-if='!addNew' ng-change='get(selectedId)' ng-model='selectedId'>
@@ -30,7 +34,7 @@
 			</select>
 			<input ng-if='addNew' ng-model='newId' ng-keydown='$event.keyCode === 13 && addNewId(newId)'/>
 			<button ng-if='!addNew' ng-click='toggleAddNew()'>+</button>
-			<button ng-if='addNew' ng-click='toggleAddNew()'>-</button>
+			<!-- <button class='close-btn' ng-if='!addNew' ng-click='removeTimeId(selectedId)'>X</button> -->
 		</div>
 		<div class='section-cnt' ng-repeat='section in excludedSections' id='section-{{section.id}}'>
 			<button class='close-btn right-corner' ng-click='remove(excludedSections, $index)'>X</button>
@@ -55,11 +59,11 @@
 				<div class='cmd-input-cnt' style='background-color: {{cmd.selectedColor}}'>
 					<span ng-repeat='time in cmd.times[section.id]'>
 						<input type='time' ng-change='updateVisual()' ng-model='cmd.times[section.id][$index]'/>
-						<button class='close-btn' ng-click='remove(cmd.times[section.id], $index)'>X</button>
+						<button class='close-btn' ng-click='remove(cmd.times[section.id], $index); delayUpdateVisual();'>X</button>
 					</span>
 				</div>
 				<br>
-				<button ng-click='addCmdTime(cmd, section.id)'>Add {{cmd.alias}} Time</button>
+				<button ng-click='addCmdTime(cmd, section.id); delayUpdateVisual();'>Add {{cmd.alias}} Time</button>
 				<br>
 			</div>
 		</div>

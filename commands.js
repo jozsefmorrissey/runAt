@@ -47,6 +47,13 @@ function get(id) {
   return data[id];
 }
 
+function remove(id) {
+	if(data[id]) {
+		delete data[id];
+		shell.exec(`rm ./data/${id}.json`);	
+	}
+}
+
 function save(id, obj) {
   data[id] = obj;
   fs.writeFile(`./data/${id}.json`, JSON.stringify(data[id], null, 2));
@@ -88,7 +95,7 @@ function prepend(str, len, preFixChar) {
 }
 
 function runCmd (dKey) {
-	console.log(`RUNNING New Command: ${dKey}`);
+	console.log(`RUNNING New Command: ${dKey} @ ${new Date().toString()}`);
 	const cmds = {};
 	let cgt = {};
 	let clt = {};
@@ -188,4 +195,5 @@ exec(process.argv[2], process.argv[3]);
 exports.exec = exec;
 exports.getDataIds = getDataIds;
 exports.save = save;
+exports.remove = remove;
 exports.get = get;

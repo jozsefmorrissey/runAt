@@ -16,6 +16,12 @@ app.get('/:id', function (req, res) {
   res.json(commands.get(id));
 });
 
+app.get('/remove/time/:id', function (req, res) {
+  const id = req.params.id;
+  commands.remove(id);
+  res.json(commands.getDataIds());
+});
+
 app.get('/id/list', function (req, res) {
   res.json(commands.getDataIds());
 });

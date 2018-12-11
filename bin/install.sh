@@ -10,3 +10,4 @@ update-rc.d startup.sh defaults
 mkdir -p /programs/runAt
 cp -r ./* /programs/runAt
 chmod -R 0777 /programs/runAt/data/
+chmod +rw /programs/runAt/out.log

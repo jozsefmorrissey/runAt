@@ -56,3 +56,11 @@
    background-color: darkgray;
    border-radius: 20pt;
 }
+
+.cmd-cnt {
+	background-color: white;
+   border-radius: 5pt;
+   padding: 5pt;
+   margin: 5pt;
+   border-style: groove;
+}

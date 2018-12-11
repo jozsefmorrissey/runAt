@@ -279,7 +279,9 @@
 			}
 			
 			function addNewId(newId) {
-				$scope.idList.push(newId);
+				if (newId) {
+					$scope.idList.push(newId);
+				}
 				$scope.addNew = false;
 			}
 			
@@ -325,6 +327,10 @@
 				delayUpdateVisual();	
 			}
 			
+			function removeTimeId(id) {
+				$http.get(`http://localhost:3000/remove/time/${id}`).then(setList);
+			}
+			
 			$scope.toggleAddNew = toggleAddNew;
 			$scope.addNew = false;
 			$scope.addNewId = addNewId;
@@ -337,5 +343,6 @@
 			$scope.get = get;
 			$scope.addCmd = addCmd;
 			$scope.addCmdTime = addCmdTime;
+			$scope.removeTimeId = removeTimeId;
 		});
 		
