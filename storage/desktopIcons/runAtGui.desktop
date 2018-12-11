@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=runAt GUI
+Comment=My application which does this
+Icon=/home/pi/Pictures/parentalControl.png
+Exec=runAt.sh start
+Type=Application
+Encoding=UTF-8
+Terminal=true
+Categories=None;
