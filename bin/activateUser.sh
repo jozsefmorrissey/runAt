@@ -1,9 +1,9 @@
 #!/bin/bash
-user="eric"
+user=$1
 placeholder="ZZZZZZZZZZAAAAAAAAAAAAAAAAAAAAAYYYYYYYYYYYYYYYYYYYYYYYYY"
 h=$(runAt.sh HOME)
 userFile=$h/.${user}HashPwd
-currPwd=$(sudo grep -roP "eric:.*" /etc/shadow | sed -E "s/eric:([^:]*):.*$/\1/")
+currPwd=$(sudo grep -roP "${user}:.*" /etc/shadow | sed -E "s/${user}:([^:]*):.*$/\1/")
 pwd=$(cat $userFile)
 echo $pwd : $h
 if [ "$currPwd" == "$placeholder" ] && [ ! -z $pwd ]
