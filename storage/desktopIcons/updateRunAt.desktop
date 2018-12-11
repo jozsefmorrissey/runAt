@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Deactivate Eric
+Comment=My application which does this
+Icon=/programs/runAt/storage/images/deactivate.png
+Exec=updateRunAt.sh
+Type=Application
+Encoding=UTF-8
+Terminal=true
+Categories=None;
