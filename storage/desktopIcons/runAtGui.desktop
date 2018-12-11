@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=runAt GUI
 Comment=My application which does this
-Icon=/programs/runAt/parentalControl.png
+Icon=/programs/runAt/storage/images/parentalControl.png
 Exec=runAt.sh start
 Type=Application
 Encoding=UTF-8

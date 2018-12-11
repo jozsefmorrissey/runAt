@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Activate Eric
 Comment=My application which does this
-Icon=/programs/runAt/activate.png
+Icon=/programs/runAt/storage/images/activate.png
 Exec=activateUser.sh
 Type=Application
 Encoding=UTF-8

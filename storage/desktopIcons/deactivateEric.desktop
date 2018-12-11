@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Deactivate Eric
 Comment=My application which does this
-Icon=/programs/runAt/deactivate.png
+Icon=/programs/runAt/storage/images/deactivate.png
 Exec=deactivateUser.sh eric
 Type=Application
 Encoding=UTF-8
