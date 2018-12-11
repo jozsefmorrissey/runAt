@@ -44,3 +44,15 @@
    margin: 5pt;
    border-style: groove;
 }
+
+.right-corner {
+	position: absolute;
+   right: 30;
+}
+
+.close-btn {
+   font-weight: 900;
+   color: red;
+   background-color: darkgray;
+   border-radius: 20pt;
+}

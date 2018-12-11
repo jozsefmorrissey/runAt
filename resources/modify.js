@@ -133,12 +133,14 @@
 							const hour = this[index].getHours();
 							const min = this[index].getMinutes();
 							const section = getSection(key);
-							const tKey = section.days.join('-');
-							if (itCmdDates[count].times[tKey] === undefined) {
-                       itCmdDates[count].times[tKey] = [];							
-							}
-							for (let dIndex = 0; dIndex < section.days.length; dIndex += 1) {
-								itCmdDates[count].times[tKey].push(new ItDate(null, null, section.days[dIndex], hour, min, 0, 0).toObj());						
+							if (section) {
+								const tKey = section.days.join('-');
+								if (itCmdDates[count].times[tKey] === undefined) {
+        			               itCmdDates[count].times[tKey] = [];							
+								}
+								for (let dIndex = 0; dIndex < section.days.length; dIndex += 1) {
+									itCmdDates[count].times[tKey].push(new ItDate(null, null, section.days[dIndex], hour, min, 0, 0).toObj());						
+								}
 							}
 						}
 					});
@@ -318,15 +320,19 @@
 				delayUpdateVisual();
 			} 
 			
-			function removeSection(section) {}
+			function remove(array, index) {
+				array.splice(index, 1);
+				delayUpdateVisual();	
+			}
 			
 			$scope.toggleAddNew = toggleAddNew;
 			$scope.addNew = false;
 			$scope.addNewId = addNewId;
 			$scope.save = save;
 			$scope.removeTime = removeTime;
-			$scope.removeSection = removeSection;
+			$scope.remove = remove;
 			$scope.updateVisual = updateVisual;
+			$scope.delayUpdateVisual = delayUpdateVisual;
 			$scope.addSection = addSection;
 			$scope.get = get;
 			$scope.addCmd = addCmd;

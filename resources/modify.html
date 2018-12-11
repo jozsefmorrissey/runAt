@@ -8,7 +8,7 @@
 	</head>
 	</body>
 	<div ng-app="myApp" ng-controller="myCtrl" class='center'>
-		<h3 ng-click='editCmds = !editCmds'>Commands</h3>
+		<h3 ng-click='editCmds = !editCmds; delayUpdateVisual();' style='cursor: pointer;'>Commands</h3>
 		<div ng-show='editCmds'>
 			<div id='cmd-creator' ng-repeat='cmd in cmds'>
 				<label>command: </label>
@@ -29,9 +29,11 @@
 				<option ng-repeat='id in idList' value{{id}}>{{id}}</option>
 			</select>
 			<input ng-if='addNew' ng-model='newId' ng-keydown='$event.keyCode === 13 && addNewId(newId)'/>
+			<button ng-if='!addNew' ng-click='toggleAddNew()'>+</button>
+			<button ng-if='addNew' ng-click='toggleAddNew()'>-</button>
 		</div>
-		<button ng-if='!addNew' ng-click='toggleAddNew()'>+</button>
 		<div class='section-cnt' ng-repeat='section in excludedSections' id='section-{{section.id}}'>
+			<button class='close-btn right-corner' ng-click='remove(excludedSections, $index)'>X</button>
 			<span style='display:inline-flex'>
 				<span ng-repeat='day in days' style='padding:3pt;text-align: center'>
 					<label>{{day}}</label>
@@ -51,7 +53,10 @@
 				<label>{{cmd.alias}}</label>
 				<br>
 				<div class='cmd-input-cnt' style='background-color: {{cmd.selectedColor}}'>
-					<input type='time' ng-change='updateVisual()' ng-repeat='time in cmd.times[section.id]' ng-model='cmd.times[section.id][$index]'/>
+					<span ng-repeat='time in cmd.times[section.id]'>
+						<input type='time' ng-change='updateVisual()' ng-model='cmd.times[section.id][$index]'/>
+						<button class='close-btn' ng-click='remove(cmd.times[section.id], $index)'>X</button>
+					</span>
 				</div>
 				<br>
 				<button ng-click='addCmdTime(cmd, section.id)'>Add {{cmd.alias}} Time</button>
